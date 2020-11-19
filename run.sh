@@ -73,7 +73,7 @@ gcloud compute scp --project=$PROJECT_ID  --zone=$ZONE --recurse run_scripts.py 
 gcloud compute ssh --project=$PROJECT_ID --zone=$ZONE  $VM_NAME -- 'bash driverInstall.sh && exit'
 
 ## addig shutdown script into VM
-gcloud compute instances add-metadata example-instance \
+gcloud compute instances add-metadata $VM_NAME \
     --metadata-from-file shutdown-script=shutdown-script.sh
 
 # check the shutdown script
@@ -85,5 +85,5 @@ sudo google_metadata_script_runner --script-type shutdown --debug
 #    | grep status
 
 ## adding startup script into VM
-gcloud compute instances add-metadata example-instance \
+gcloud compute instances add-metadata $VM_NAME \
     --metadata-from-file startup-script=startup-script.sh
